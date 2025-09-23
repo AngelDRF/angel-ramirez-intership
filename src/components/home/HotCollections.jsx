@@ -9,7 +9,7 @@ const HotCollections = () => {
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  function SampleNextArrow(props) {
+  function NextArrow(props) {
     const { arrow__custom, style, onClick } = props;
     return (
       <div
@@ -58,7 +58,7 @@ const HotCollections = () => {
     );
   }
 
-  function SamplePrevArrow(props) {
+  function PrevArrow(props) {
     const { arrow__custom, style, onClick } = props;
     return (
       <div
@@ -112,8 +112,8 @@ const HotCollections = () => {
     speed: 300,
     slidesToShow: 4,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 1200,
