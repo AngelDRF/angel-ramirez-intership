@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 
 const TopSellers = () => {
@@ -8,18 +7,19 @@ const TopSellers = () => {
   const [loading, setLoading] = useState(true);
 
   async function fetchTopSellers() {
-    setLoading(true);
-    const { data } = await axios.get(
-      `https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`
-    );
-    setTopSellers(data);
-    setLoading(false);
+    try {
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers`
+      );
+      setTopSellers(data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      fetchTopSellers();
-    }, 300);
+    fetchTopSellers();
   }, []);
 
   return (
@@ -77,7 +77,7 @@ const TopSellers = () => {
                 : topSellers.map((topSeller) => (
                     <li key={topSeller.id}>
                       <div className="author_list_pp">
-                        <Link to="/author">
+                        <Link to={`/author/${topSeller.authorId}`}>
                           <img
                             className="lazy pp-author"
                             src={topSeller.authorImage}
