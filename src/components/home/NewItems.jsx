@@ -276,9 +276,6 @@ const NewItems = () => {
                     </div>
 
                     <div className="nft__item_wrap">
-                      <div className="nft__item_extra">
-                      </div>
-
                       <Link to="/item-details">
                         <img
                           src={newItem.nftImage}
