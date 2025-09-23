@@ -13,11 +13,12 @@ const Countdown = (expiryDate) => {
         setTimeleft("");
         return;
       }
-      const hours = Math.floor((range % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (range % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       const min = Math.floor((range % (1000 * 60 * 60)) / (1000 * 60));
       const sec = Math.floor((range % (1000 * 60)) / 1000);
       setTimeleft(`${hours}h ${min}m ${sec}s`);
-      setTimeout(updateCountdown, 1000);
     }
 
     updateCountdown();
