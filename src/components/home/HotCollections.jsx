@@ -4,6 +4,9 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -176,9 +179,9 @@ const HotCollections = () => {
                     <div className="nft_coll--loader">
                       <div className="nft_wrap--loader"></div>
                       <div className="nft_coll_pp--loader">
-                      <i className="fa fa-check"></i>
+                        <i className="fa fa-check"></i>
                       </div>
-                      
+
                       <div className="nft_coll_title--loader"></div>
                       <div className="nft_coll_code--loader"></div>
                     </div>
@@ -189,32 +192,38 @@ const HotCollections = () => {
           ) : (
             <Slider {...settings}>
               {collections.map((collection) => (
-                <div className="col-xs-12" key={collection.id}>
-                  <div className="nft_coll">
-                    <div className="nft_wrap">
-                      <Link to={`/item-details/${collection.nftId}`}>
-                        <img
-                          src={collection.nftImage}
-                          className="lazy img-fluid"
-                          alt=""
-                        />
-                      </Link>
-                    </div>
-                    <div className="nft_coll_pp">
-                      <Link to={`/author/${collection.authorId}`}>
-                        <img
-                          className="lazy pp-coll"
-                          src={collection.authorImage}
-                          alt=""
-                        />
-                      </Link>
-                      <i className="fa fa-check"></i>
-                    </div>
-                    <div className="nft_coll_info">
-                      <Link to="/explore">
-                        <h4>{collection.title}</h4>
-                      </Link>
-                      <span>ERC-{collection.code}</span>
+                <div
+                  data-aos="fade-in"
+                  data-aos-duration="700"
+                  data-aos-easing="ease-out-quad"
+                >
+                  <div className="col-xs-12" key={collection.id}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to={`/item-details/${collection.nftId}`}>
+                          <img
+                            src={collection.nftImage}
+                            className="lazy img-fluid"
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to={`/author/${collection.authorId}`}>
+                          <img
+                            className="lazy pp-coll"
+                            src={collection.authorImage}
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{collection.title}</h4>
+                        </Link>
+                        <span>ERC-{collection.code}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Countdown from "../UI/Countdown";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -249,49 +252,57 @@ const NewItems = () => {
           ) : (
             <Slider {...settings}>
               {newItems.map((newItem) => (
-                <div key={newItem.id}>
-                  <div
-                    className="nft__item"
-                    style={{
-                      margin: "0 4px",
-                    }}
-                  >
-                    <div className="author_list_pp">
-                      <Link
-                        to={`/author/${newItem.authorId}`}
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Creator: Monica Lucas"
-                      >
-                        <img
-                          className="lazy"
-                          src={newItem.authorImage}
-                          alt=""
-                        />
-                        <i className="fa fa-check"></i>
-                      </Link>
-                    </div>
-                    <div className="de_countdown">
-                      <CountdownDisplay expiryDate={newItem.expiryDate} />
-                    </div>
+                <div
+                  data-aos="fade-in"
+                  data-aos-duration="700"
+                  data-aos-easing="ease-out-quad"
+                >
+                  <div key={newItem.id}>
+                    <div
+                      className="nft__item"
+                      style={{
+                        margin: "0 4px",
+                      }}
+                    >
+                      <div className="author_list_pp">
+                        <Link
+                          to={`/author/${newItem.authorId}`}
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Creator: Monica Lucas"
+                        >
+                          <img
+                            className="lazy"
+                            src={newItem.authorImage}
+                            alt=""
+                          />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
+                      <div className="de_countdown">
+                        <CountdownDisplay expiryDate={newItem.expiryDate} />
+                      </div>
 
-                    <div className="nft__item_wrap">
-                      <Link to={`/item-details/${newItem.nftId}`}>
-                        <img
-                          src={newItem.nftImage}
-                          className="lazy nft__item_preview"
-                          alt=""
-                        />
-                      </Link>
-                    </div>
-                    <div className="nft__item_info">
-                      <Link to="/item-details">
-                        <h4>{newItem.title}</h4>
-                      </Link>
-                      <div className="nft__item_price">{newItem.price} ETH</div>
-                      <div className="nft__item_like">
-                        <i className="fa fa-heart"></i>
-                        <span>{newItem.likes}</span>
+                      <div className="nft__item_wrap">
+                        <Link to={`/item-details/${newItem.nftId}`}>
+                          <img
+                            src={newItem.nftImage}
+                            className="lazy nft__item_preview"
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft__item_info">
+                        <Link to="/item-details">
+                          <h4>{newItem.title}</h4>
+                        </Link>
+                        <div className="nft__item_price">
+                          {newItem.price} ETH
+                        </div>
+                        <div className="nft__item_like">
+                          <i className="fa fa-heart"></i>
+                          <span>{newItem.likes}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
