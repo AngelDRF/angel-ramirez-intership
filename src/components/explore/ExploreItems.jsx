@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Countdown from "../UI/Countdown";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init();
 
 const ExploreItems = () => {
   const [items, setItems] = useState([]);
@@ -122,18 +125,24 @@ const ExploreItems = () => {
           ))}
 
       <div className="col-md-12 text-center">
-        {visible >= items.length ? (
-          <p>No more items to load</p>
-        ) : (
-          <Link
-            to=""
-            id="loadmore"
-            className="btn-main lead"
-            onClick={showMoreItems}
-          >
-            Load more
-          </Link>
-        )}
+        <div
+          data-aos="fade-up"
+          data-aos-duration="500"
+          data-aos-easing="ease-out-quad"
+        >
+          {visible >= items.length ? (
+            <p>No more items to load</p>
+          ) : (
+            <Link
+              to=""
+              id="loadmore"
+              className="btn-main lead"
+              onClick={showMoreItems}
+            >
+              Load more
+            </Link>
+          )}
+        </div>
       </div>
     </>
   );
